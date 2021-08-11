@@ -77,7 +77,7 @@ client.on('guildMemberAdd', async member => {
 
     ctx.drawImage(pfp, x, y)
     // Display user text
-    ctx.fillStyle = '#0a0a0a' // White text
+    ctx.fillStyle = '#0a0a0a' // Balck text
     ctx.font = '35px Dosis'    //sans-serif
     let text = `Welcome ${member.user.tag}!`
     x = canvas.width / 2 - ctx.measureText(text).width / 2
@@ -107,6 +107,13 @@ client.on('message', message => {
 
 
 client.on('nitroBoost', (booster) => {
-	client.channels.get('1234567890').send(`${booster} boosted the server!`)
-	client.addRole(booster.guild.roles.find(a => a.name === 'Nitro Booster'))
+	client.channels.get('873522918431260773').send(`${booster} ha boostato il server <a:amongdance:874971135299694653>
+    !`)
+	client.addRole(booster.guild.roles.find(a => a.name === 'Deam Boster'))
  })
+
+
+ client.on('guildMemberAdd', member => {
+    const role = member.guild.roles.cache.find(r => r.name === 'F_PC');
+    member.roles.add(role).catch(console.error);
+ });
