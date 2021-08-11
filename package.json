@@ -1,0 +1,23 @@
+{
+  "name": "fpc-bot-repo",
+  "version": "1.0.0",
+  "description": "Bot Discord del server Frind-PC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rikvik2006/FPC-BOT-Repo.git"
+  },
+  "author": "rikvik2006",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rikvik2006/FPC-BOT-Repo/issues"
+  },
+  "homepage": "https://github.com/rikvik2006/FPC-BOT-Repo#readme",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "discord.js": "^12.5.3"
+  }
+}
