@@ -1,8 +1,17 @@
 const Discord = require('discord.js');
 const Canvas = require('canvas');
-const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL','REACTION']});
+const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const canvas = Canvas.createCanvas(700, 250);
 const context = canvas.getContext('2d');
+const permitted_DS = require('./admin/permitted.DS_pro.json');
+
+const disbut = require("discord-buttons")
+disbut(client);
+
+const { MessageButton, MessageActionRow } = require("discord-buttons")
+const { MessageMenuOption, MessageMenu } = require("discord-buttons")
+
+
 
 client.login('ODczODg0MzU0NzE4MzU1NDY2.YQ-6Og.XBtWESrBppHw6JVtI4u5J7-qfLM');
 
@@ -12,6 +21,8 @@ client.once ('ready', () => {
 
     client.user.setActivity('i tuoi sentimenti', {type: 'WATCHING'});
 })
+
+
 
 
 client.on ('message', (message) => {
@@ -110,10 +121,73 @@ client.on('nitroBoost', (booster) => {
 	client.channels.get('873522918431260773').send(`${booster} ha boostato il server <a:amongdance:874971135299694653>
     !`)
 	client.addRole(booster.guild.roles.find(a => a.name === 'Deam Boster'))
- })
+})
 
 
- client.on('guildMemberAdd', member => {
-    const role = member.guild.roles.cache.find(r => r.name === 'F_PC');
+client.on('guildMemberAdd', member => {
+    var role = member.guild.roles.cache.find(r => r.name === 'F_PC');
     member.roles.add(role).catch(console.error);
- });
+});
+
+
+
+client.on('message', message => {
+    if (message.content === 'sus-bottoni') {
+
+        var button1 = new MessageButton()
+            .setLabel('Baby Rondo')
+            .setStyle('red')
+            .setID('role_rondo')
+
+        var button2 = new MessageButton()
+            .setLabel('Discord Pro')
+            .setStyle('green')
+            .setID('role_discord_pro')
+
+        var button3 = new MessageButton()
+            .setLabel('Minecarft PRO Bedwars')
+            .setStyle('blurple')
+            .setID('role_minecarft_pro_bedwars')
+
+        var row = new MessageActionRow()
+            .addComponent(button1)
+            .addComponent(button2)
+            .addComponent(button3)
+
+        var buttonEmbed = new Discord.MessageEmbed()
+            .setTitle('Cosa sei tu')
+            .setDescription('Scegli cliccando sul pulsante il tuo ruolo, puoi sceglierene anche più di uno. \n I ruoli `Discord Pro` e `Minecarft Pro Bedwars` possono essere presi a delle condizioni che sono scritte qui sotto')
+            .addField('Discord Pro', '```Puo essere riscattato se si ha un livello pari o superiore a 10 nel livello generale di Bread (Visualizzabile con !!rank)```')
+            .addField('Minecarft PRO Bedwars', '```Riscattabile solo se si ha un livello pari o supoeriore a 15 nelle bedwars nei server THE HIVE oppure Hipixel```')
+
+        message.channel.send(buttonEmbed, row)
+    }
+})
+
+
+client.on("clickButton", async (button) => {
+    if (button.id == "role_rondo") {
+
+        
+        const role = button.guild.roles.cache.get('874996080838844426')
+        const member = button.clicker.member
+        await member.roles.add(role)
+
+
+        button.reply.send("Ti è stato aggiunto il ruolo Baby Rondo", true)
+        //button.reply.defer()
+
+    }
+})
+
+
+
+client.on ('clikcButton', button => {
+    if (button.id == 'role_rondo') {
+         
+    }
+})
+
+
+
+
