@@ -1,15 +1,18 @@
-const Discord = require('discord.js');
+const {Client, Intents, MessageButton, MessageActionRow, MessageEmbed} = require('discord.js');
+const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], 
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_BANS, Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, Intents.FLAGS.GUILD_INTEGRATIONS, Intents.FLAGS.GUILD_WEBHOOKS, Intents.FLAGS.GUILD_INVITES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGE_TYPING, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.DIRECT_MESSAGE_REACTIONS, Intents.FLAGS.DIRECT_MESSAGE_TYPING],
+});
+
+
 const Canvas = require('canvas');
-const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const canvas = Canvas.createCanvas(700, 250);
 const context = canvas.getContext('2d');
 const permitted_DS = require('./admin/permitted.DS_pro.json');
 
-const disbut = require("discord-buttons")
-disbut(client);
+//const disbut = require("discord-buttons")
+//disbut(client);
 
-const { MessageButton, MessageActionRow } = require("discord-buttons")
-const { MessageMenuOption, MessageMenu } = require("discord-buttons")
+
 
 
 
@@ -23,12 +26,12 @@ client.once ('ready', () => {
 })
 
 
+//herlp
 
-
-client.on ('message', (message) => {
+client.on ('messageCreate', (message) => {
     if (message.content === 'sus-help') {
 
-        const help_embed = new Discord.MessageEmbed()
+        var help_embed = new MessageEmbed()
 
         .setTitle ('HELP')
         .setColor('#CCCCCC')
@@ -36,12 +39,12 @@ client.on ('message', (message) => {
         .addField('sus-help', '```Tutti i comandi```')
         .setFooter('FPC', 'https://discohook.org/static/discord-avatar.png')
 
-        message.channel.send(help_embed)
+        message.channel.send({embeds: [help_embed]})
     }
 })
 
 
-
+//welcomw canvas
 
 client.on('guildMemberAdd', async member => {
 	const channel = member.guild.channels.cache.find(ch => ch.name === '💎boost-welcome💎');
@@ -107,15 +110,15 @@ client.on('guildMemberAdd', async member => {
 
 });
 
+//welcomw emit
 
-
-client.on('message', message => {
+client.on('messageCreate', message => {
 	if (message.content === 'sus-join') {
 		client.emit('guildMemberAdd', message.member);
 	}
 });
 
-
+//nitro boost
 
 client.on('nitroBoost', (booster) => {
 	client.channels.get('873522918431260773').send(`${booster} ha boostato il server <a:amongdance:874971135299694653>
@@ -123,71 +126,65 @@ client.on('nitroBoost', (booster) => {
 	client.addRole(booster.guild.roles.find(a => a.name === 'Deam Boster'))
 })
 
+//auto role
 
 client.on('guildMemberAdd', member => {
     var role = member.guild.roles.cache.find(r => r.name === 'F_PC');
     member.roles.add(role).catch(console.error);
 });
 
+//buttons
 
-
-client.on('message', message => {
+client.on('messageCreate', message => {
     if (message.content === 'sus-bottoni') {
 
-        var button1 = new MessageButton()
-            .setLabel('Baby Rondo')
-            .setStyle('red')
-            .setID('role_rondo')
-
-        var button2 = new MessageButton()
-            .setLabel('Discord Pro')
-            .setStyle('green')
-            .setID('role_discord_pro')
-
-        var button3 = new MessageButton()
-            .setLabel('Minecarft PRO Bedwars')
-            .setStyle('blurple')
-            .setID('role_minecarft_pro_bedwars')
-
         var row = new MessageActionRow()
-            .addComponent(button1)
-            .addComponent(button2)
-            .addComponent(button3)
+            .addComponents(
+                new MessageButton()
+                    .setLabel('Baby Rondo')
+                    .setStyle('DANGER')
+                    .setCustomId('role_rondo'),
 
-        var buttonEmbed = new Discord.MessageEmbed()
+                new MessageButton()
+                    .setLabel('Discord Pro')
+                    .setStyle('SUCCESS')
+                    .setCustomId('role_discord_pro'),
+
+                new MessageButton()
+                    .setLabel('Minecarft PRO Bedwars')
+                    .setStyle('PRIMARY')
+                    .setCustomId('role_minecarft_pro_bedwars'),
+
+            );
+            
+            
+
+        var buttonEmbed = new MessageEmbed()
             .setTitle('Cosa sei tu')
             .setDescription('Scegli cliccando sul pulsante il tuo ruolo, puoi sceglierene anche più di uno. \n I ruoli `Discord Pro` e `Minecarft Pro Bedwars` possono essere presi a delle condizioni che sono scritte qui sotto')
             .addField('Discord Pro', '```Puo essere riscattato se si ha un livello pari o superiore a 10 nel livello generale di Bread (Visualizzabile con !!rank)```')
             .addField('Minecarft PRO Bedwars', '```Riscattabile solo se si ha un livello pari o supoeriore a 15 nelle bedwars nei server THE HIVE oppure Hipixel```')
 
-        message.channel.send(buttonEmbed, row)
+        message.channel.send({embeds: [buttonEmbed], components: [row]})
     }
 })
 
-
-client.on("clickButton", async (button) => {
-    if (button.id == "role_rondo") {
-
-        
-        const role = button.guild.roles.cache.get('874996080838844426')
-        const member = button.clicker.member
-        await member.roles.add(role)
+//click button
 
 
-        button.reply.send("Ti è stato aggiunto il ruolo Baby Rondo", true)
-        //button.reply.defer()
+client.on("interactionCreate", async (interaction) => {
+    if (interaction.isButton) {
+        if (interaction.customId === 'role_rondo' ) {
 
+            const role = interaction.guild.roles.cache.get('874996080838844426')
+            const member = interaction.member
+            await member.roles.add(role)
+
+
+            interaction.reply({content:`**${interaction.user.tag}** ti è stato aggiunto il ruolo **Baby Rondo**`,ephemeral: true})
+            //interaction.reply.defer()
+
+        }
     }
 })
-
-
-
-client.on ('clikcButton', button => {
-    if (button.id == 'role_rondo') {
-         
-    }
-})
-
-
-
 
