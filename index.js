@@ -1,4 +1,4 @@
-const {Client, Intents, MessageButton, MessageActionRow, MessageEmbed} = require('discord.js');
+const {Client, Intents, MessageButton, MessageActionRow, MessageEmbed, MessageAttachment} = require('discord.js');
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], 
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_BANS, Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, Intents.FLAGS.GUILD_INTEGRATIONS, Intents.FLAGS.GUILD_WEBHOOKS, Intents.FLAGS.GUILD_INVITES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGE_TYPING, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.DIRECT_MESSAGE_REACTIONS, Intents.FLAGS.DIRECT_MESSAGE_TYPING],
 });
@@ -8,6 +8,7 @@ const Canvas = require('canvas');
 const canvas = Canvas.createCanvas(700, 250);
 const context = canvas.getContext('2d');
 const permitted_DS = require('./admin/permitted.DS_pro.json');
+const permited_MC = require ('./admin/permitted.Minecarft.json')
 
 //const disbut = require("discord-buttons")
 //disbut(client);
@@ -57,7 +58,7 @@ client.on('guildMemberAdd', async member => {
 
 	const { guild } = member
 
-	const { MessageAttachment } = require('discord.js')
+
     // Load the background image and draw it to the canvas
     const background = await Canvas.loadImage('./wallpaper.png');
     const path = require('path')
@@ -103,7 +104,7 @@ client.on('guildMemberAdd', async member => {
     ctx.fillText(text, x, 100 + pfp.height)
     // Attach the image to a message and send it
     //const attachment = new MessageAttachment(canvas.toBuffer())
-	const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'say-goodbye.png');
+	const attachment = new MessageAttachment(canvas.toBuffer(), 'say-goodbye.png');
 
     channel.send(`Bella gianda, ${member}! Spero che te abbia portato i biscotti <a:hei:874591082812440586>
 	`, attachment)
@@ -176,14 +177,46 @@ client.on("interactionCreate", async (interaction) => {
     if (interaction.isButton) {
         if (interaction.customId === 'role_rondo' ) {
 
-            const role = interaction.guild.roles.cache.get('874996080838844426')
-            const member = interaction.member
+            var role = interaction.guild.roles.cache.get('874996080838844426')
+            var member = interaction.member
             await member.roles.add(role)
 
 
             interaction.reply({content:`**${interaction.user.tag}** ti è stato aggiunto il ruolo **Baby Rondo**`,ephemeral: true})
-            //interaction.reply.defer()
+            
 
+        }
+        
+        if (permitted_DS.includes(interaction.member.id)) {
+            if (interaction.customId === 'role_discord_pro' ) {
+
+                var role = interaction.guild.roles.cache.get('877925239676350537')
+                var member = interaction.member
+                await member.roles.add(role)
+
+
+                interaction.reply({content:`**${interaction.user.tag}** ti è stato aggiunto il ruolo **Discord Pro**`,ephemeral: true})
+
+
+            }
+        }else{
+            interaction.reply({content:`**${interaction.user.tag}** non puoi avere questo ruolo perché il tuo livello è troppo basso`, ephemeral: true})
+        }
+
+        if (permited_MC.includes(interaction.member.id)) {
+            if (interaction.customId === 'role_minecarft_pro_bedwars' ) {
+
+                var role = interaction.guild.roles.cache.get('877925547886395392')
+                var member = interaction.member
+                await member.roles.add(role)
+
+
+                interaction.reply({content:`**${interaction.user.tag}** ti è stato aggiunto il ruolo **Minecraft Pro BedWars**`,ephemeral: true})
+
+
+            }
+        }else{
+            interaction.reply({content:`**${interaction.user.tag}** non puoi avere questo ruolo perché il tuo livello è troppo basso`, ephemeral: true})
         }
     }
 })
