@@ -17,7 +17,7 @@ const permited_MC = require ('./admin/permitted.Minecarft.json')
 
 
 
-client.login('ODczODg0MzU0NzE4MzU1NDY2.YQ-6Og.XBtWESrBppHw6JVtI4u5J7-qfLM');
+client.login('ODczODg0MzU0NzE4MzU1NDY2.YQ-6Og.GkdvAO3oxta_LT4zUMybPfg7KH4');
 
 
 client.once ('ready', () => {
