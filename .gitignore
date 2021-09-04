@@ -1,4 +1,3 @@
-'node_modules' 
-'admin'
-'npm-debug.log' 
-/admin
+node_modules
+admin
+'npm-debug.log'
