@@ -226,9 +226,9 @@ client.on("interactionCreate", async (interaction) => {
 client.on ('messageCreate', (message) => {
     if (message.content === 'sus-ping'){
 
-        var utente = message.author()
+        var utente = message.author
 
-        message.reply()
+        message.reply(`${utente} pong!`)
 
     }
 })
