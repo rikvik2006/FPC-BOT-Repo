@@ -229,7 +229,6 @@ client.on('messageCreate', (message) => {
 
         var utente = message.author.toString()
 
-        message.reply(`${utente} pong!`)
 
         var embed_ping = new MessageEmbed()
 
