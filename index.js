@@ -224,5 +224,7 @@ client.on("interactionCreate", async (interaction) => {
 
 
 client.on ('messageCreate', (message) => {
-    
+    if (message.content === 'sus-ping'){
+        
+    }
 })
