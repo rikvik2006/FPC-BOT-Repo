@@ -230,5 +230,9 @@ client.on ('messageCreate', (message) => {
 
         message.reply(`${utente} pong!`)
 
+        var embed_ping = new MessageEmbed()
+
+        
+
     }
 })
