@@ -228,5 +228,7 @@ client.on ('messageCreate', (message) => {
 
         var utente = message.author()
 
+        message.reply()
+
     }
 })
