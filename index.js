@@ -232,7 +232,9 @@ client.on ('messageCreate', (message) => {
 
         var embed_ping = new MessageEmbed()
 
-        
+        .setTitle('Pong')
+        .setDescription(`${utente} pong!`)
+        .setColor('WHITE')
 
     }
 })
