@@ -241,3 +241,11 @@ client.on('messageCreate', (message) => {
     }
 })
 
+
+client.on('messageCreate', (message) => {
+    if (message.content.startsWith === 'sus-email'){
+
+    }
+})
+
+
