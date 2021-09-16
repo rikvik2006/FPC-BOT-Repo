@@ -9,7 +9,8 @@ const Canvas = require('canvas');
 const canvas = Canvas.createCanvas(700, 250);
 const context = canvas.getContext('2d');
 const permitted_DS = require('./admin/permitted.DS_pro.json');
-const permited_MC = require('./admin/permitted.Minecarft.json')
+const permited_MC = require('./admin/permitted.Minecarft.json');
+const path = require('path');
 
 //const disbut = require("discord-buttons")
 //disbut(client);
@@ -247,5 +248,3 @@ client.on('messageCreate', (message) => {
 
     }
 })
-
-
