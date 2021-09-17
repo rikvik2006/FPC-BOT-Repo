@@ -260,7 +260,7 @@ client.on('interactionCreate', (interaction) => {
 
 client.on('messageCreate', (message) => {
     if (message.content === 'sus-online') {
-        message.channel.send()
+        message.channel.send({embeds: [online_embed], components: [row]})
 
         var online_embed = new MessageEmbed()
             .setcolor('#00ff00')
