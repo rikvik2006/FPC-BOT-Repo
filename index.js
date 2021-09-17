@@ -237,14 +237,39 @@ client.on('messageCreate', (message) => {
             .setDescription(`${utente} pong!`)
             .setColor('WHITE')
 
-        message.reply({embeds: [embed_ping]})
+        message.reply({ embeds: [embed_ping] })
 
     }
 })
 
 
 client.on('messageCreate', (message) => {
-    if (message.content.startsWith === 'sus-email'){
+    if (message.content.startsWith === 'sus-email') {
 
+    }
+})
+
+
+client.on('interactionCreate', (interaction) => {
+    if (interaction.isButton) {
+        if (interaction.customId === 'online') {
+
+        }
+    }
+})
+
+client.on('messageCreate', (message) => {
+    if (message.content === 'sus-online') {
+        message.channel.send()
+
+        var online_embed = new MessageEmbed()
+            .setcolor('#00ff00')
+            .setTitle('Verifiac se il bot è ONLINE')
+            .setDescription('Se il bot risppondera al click del bottone allora il bot sarà online, altrimenti ti darà un errore è in quetso caso il bot srà ofline')
+
+        var row = new MessageActionRow()
+            .addComponents( 
+                new MessageButton()
+            )
     }
 })
