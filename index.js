@@ -4,6 +4,11 @@ const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_BANS, Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, Intents.FLAGS.GUILD_INTEGRATIONS, Intents.FLAGS.GUILD_WEBHOOKS, Intents.FLAGS.GUILD_INVITES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGE_TYPING, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.DIRECT_MESSAGE_REACTIONS, Intents.FLAGS.DIRECT_MESSAGE_TYPING],
 });
 
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+const fs = require('fs');
+const { token } = require('./config.json');
+
 
 const Canvas = require('canvas');
 const canvas = Canvas.createCanvas(700, 250);
@@ -17,9 +22,7 @@ const path = require('path');
 
 
 
-
-
-client.login('ODczODg0MzU0NzE4MzU1NDY2.YQ-6Og.GkdvAO3oxta_LT4zUMybPfg7KH4');
+client.login(token);
 
 
 client.once('ready', () => {
@@ -254,9 +257,9 @@ client.on('interactionCreate', (interaction) => {
     }
 })
 
-client.on('messageCreate', async (message) => {
+client.on('messageCreate', (message) => {
     if (message.content === 'sus-online') {
-        await message.channel.send({embeds: [online_embed], components: [roww]})
+        message.channel.send({embeds: [online_embed], components: [roww]})
 
         var online_embed = new MessageEmbed()
             .setColor('#00ff00')
@@ -272,3 +275,36 @@ client.on('messageCreate', async (message) => {
             )
     }
 })
+
+
+
+//Slash commands
+
+const commands = [];
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+// Place your client and guild ids here
+const clientId = '123456789012345678';
+const guildId = '876543210987654321';
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	commands.push(command.data.toJSON());
+}
+
+const rest = new REST({ version: '9' }).setToken(token);
+
+(async () => {
+	try {
+		console.log('Started refreshing application (/) commands.');
+
+		await rest.put(
+			Routes.applicationGuildCommands(clientId, guildId),
+			{ body: commands },
+		);
+
+		console.log('Successfully reloaded application (/) commands.');
+	} catch (error) {
+		console.error(error);
+	}
+})();
