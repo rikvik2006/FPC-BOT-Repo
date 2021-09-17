@@ -270,6 +270,9 @@ client.on('messageCreate', (message) => {
         var row = new MessageActionRow()
             .addComponents( 
                 new MessageButton()
+                .setLabel('ONLINE?')
+                .setStyle('SUCCESS')
+                .setCustomId('online')
             )
     }
 })
