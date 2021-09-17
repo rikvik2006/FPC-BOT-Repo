@@ -243,12 +243,6 @@ client.on('messageCreate', (message) => {
 })
 
 
-client.on('messageCreate', (message) => {
-    if (message.content.startsWith === 'sus-email') {
-
-    }
-})
-
 
 client.on('interactionCreate', (interaction) => {
     if (interaction.isButton) {
