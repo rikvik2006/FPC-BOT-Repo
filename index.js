@@ -253,6 +253,8 @@ client.on('messageCreate', (message) => {
 client.on('interactionCreate', (interaction) => {
     if (interaction.isButton) {
         if (interaction.customId === 'online') {
+            
+            interaction.reply(`${interaction.user.tag} il bot è online`)
 
         }
     }
@@ -263,7 +265,7 @@ client.on('messageCreate', (message) => {
         message.channel.send({embeds: [online_embed], components: [row]})
 
         var online_embed = new MessageEmbed()
-            .setcolor('#00ff00')
+            .setColor('#00ff00')
             .setTitle('Verifiac se il bot è ONLINE')
             .setDescription('Se il bot risppondera al click del bottone allora il bot sarà online, altrimenti ti darà un errore è in quetso caso il bot srà ofline')
 
