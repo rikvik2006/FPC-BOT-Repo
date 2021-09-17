@@ -254,27 +254,27 @@ client.on('interactionCreate', (interaction) => {
     if (interaction.isButton) {
         if (interaction.customId === 'online') {
             
-            interaction.reply(`${interaction.user.tag} il bot è online`)
+            interaction.reply({ content:`${interaction.user.tag} il bot è online`, ephemeral: true})
 
         }
     }
 })
 
-client.on('messageCreate', (message) => {
+client.on('messageCreate', async (message) => {
     if (message.content === 'sus-online') {
-        message.channel.send({embeds: [online_embed], components: [row]})
+        await message.channel.send({embeds: [online_embed], components: [roww]})
 
         var online_embed = new MessageEmbed()
             .setColor('#00ff00')
             .setTitle('Verifiac se il bot è ONLINE')
             .setDescription('Se il bot risppondera al click del bottone allora il bot sarà online, altrimenti ti darà un errore è in quetso caso il bot srà ofline')
 
-        var row = new MessageActionRow()
+        var roww = new MessageActionRow()
             .addComponents( 
                 new MessageButton()
-                .setLabel('ONLINE?')
+                .setLabel('ONLINE')
                 .setStyle('SUCCESS')
-                .setCustomId('online')
+                .setCustomId('online'),
             )
     }
 })
