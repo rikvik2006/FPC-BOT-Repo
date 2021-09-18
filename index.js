@@ -308,5 +308,6 @@ client.on('messageCreate', message => {
             .setTitle('Schede grafiche')
             .setDescription('Il bot ti dice se ci sono schede grafiche ad un prezzo conveniente')
             .addField('Non ci sono schede grafiche', 'Prezzi troppo alti. Previone di ripristino del pezzo `Uscita serie 4000`')
+        message.reply(schede_grafiche)
     }
 })
