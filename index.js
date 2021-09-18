@@ -251,8 +251,8 @@ client.on('messageCreate', (message) => {
 client.on('interactionCreate', (interaction) => {
     if (interaction.isButton) {
         if (interaction.customId === 'online') {
-            
-            interaction.reply({ content:`${interaction.user.tag} il bot è online`, ephemeral: true})
+
+            interaction.reply({ content: `${interaction.user.tag} il bot è online`, ephemeral: true })
 
         }
     }
@@ -260,7 +260,7 @@ client.on('interactionCreate', (interaction) => {
 
 client.on('messageCreate', (message) => {
     if (message.content === 'sus-online') {
-        message.channel.send({embeds: [online_embed], components: [roww]})
+        message.channel.send({ embeds: [online_embed], components: [roww] })
 
         var online_embed = new MessageEmbed()
             .setColor('#00ff00')
@@ -268,11 +268,11 @@ client.on('messageCreate', (message) => {
             .setDescription('Se il bot risppondera al click del bottone allora il bot sarà online, altrimenti ti darà un errore è in quetso caso il bot srà ofline')
 
         var roww = new MessageActionRow()
-            .addComponents( 
+            .addComponents(
                 new MessageButton()
-                .setLabel('ONLINE')
-                .setStyle('SUCCESS')
-                .setCustomId('online'),
+                    .setLabel('ONLINE')
+                    .setStyle('SUCCESS')
+                    .setCustomId('online'),
             )
     }
 })
@@ -284,17 +284,17 @@ client.on('messageCreate', (message) => {
 
 
 client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
+    if (!interaction.isCommand()) return;
 
-	const { commandName } = interaction;
+    const { commandName } = interaction;
 
-	if (commandName === 'ping') {
-		await interaction.reply('Pong!');
-	} else if (commandName === 'server') {
-		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
-	} else if (commandName === 'user') {
-		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
-	}
+    if (commandName === 'ping') {
+        await interaction.reply('Pong!');
+    } else if (commandName === 'server') {
+        await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+    } else if (commandName === 'user') {
+        await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
+    }
 });
 
 
@@ -303,7 +303,10 @@ client.on('interactionCreate', async interaction => {
 *--------------------------------*/
 
 client.on('messageCreate', message => {
-    if (message.content === 'sus-chede grafiche') {
-        
+    if (message.content === 'sus-schede-grafiche') {
+        var schede_grafiche = new MessageEmbed()
+            .setTitle('Schede grafiche')
+            .setDescription('Il bot ti dice se ci sono schede grafiche ad un prezzo conveniente')
+            .addField('Non ci sono schede grafiche', 'Prezzi troppo alti. Previone di ripristino del pezzo `Uscita serie 4000`')
     }
 })
