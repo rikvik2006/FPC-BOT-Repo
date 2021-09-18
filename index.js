@@ -296,3 +296,14 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
 	}
 });
+
+
+/*---------------------------------
+*        !schede grafiche
+*--------------------------------*/
+
+client.on('messageCreate', message => {
+    if (message.content === 'sus-chede grafiche') {
+        
+    }
+})
