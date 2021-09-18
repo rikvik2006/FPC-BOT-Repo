@@ -306,8 +306,9 @@ client.on('messageCreate', message => {
     if (message.content === 'sus-schede-grafiche') {
         var schede_grafiche = new MessageEmbed()
             .setTitle('Schede grafiche')
+            .setColor('#cccccc')
             .setDescription('Il bot ti dice se ci sono schede grafiche ad un prezzo conveniente')
             .addField('Non ci sono schede grafiche', 'Prezzi troppo alti. Previone di ripristino del pezzo `Uscita serie 4000`')
-        message.reply(schede_grafiche)
+        message.reply({embeds: [schede_grafiche]})
     }
 })
