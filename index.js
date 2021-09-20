@@ -323,3 +323,9 @@ client.on('messageCreate', (message) => {
         console.log(`Queasto è l'URL ${url}`)
     }
 })
+
+
+
+/*---------------------------------
+*             !test
+*--------------------------------*/
