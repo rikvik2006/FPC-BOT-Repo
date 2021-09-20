@@ -308,7 +308,7 @@ client.on('messageCreate', message => {
             .setTitle('Schede grafiche')
             .setColor('#cccccc')
             .setDescription('Il bot ti dice se ci sono schede grafiche ad un prezzo conveniente')
-            .addField('Non ci sono schede grafiche', 'Prezzi troppo alti. Previone di ripristino del pezzo `Uscita serie 4000`')
+            .addField('Non ci sono schede grafiche', 'Prezzi troppo alti. Previsione di ripristino prezzi `Uscita serie 4000`')
         message.reply({embeds: [schede_grafiche]})
     }
 })
