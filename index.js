@@ -309,7 +309,7 @@ client.on('messageCreate', message => {
             .setColor('#cccccc')
             .setDescription('Il bot ti dice se ci sono schede grafiche ad un prezzo conveniente')
             .addField('Non ci sono schede grafiche', 'Prezzi troppo alti. Previsione di ripristino prezzi `Uscita serie 4000`')
-        message.reply({embeds: [schede_grafiche]})
+        message.reply({ embeds: [schede_grafiche] })
     }
 })
 
@@ -317,10 +317,9 @@ client.on('messageCreate', message => {
 *      !generatore di qrcode
 *--------------------------------*/
 
-client.on ('messageCreate', message => {
-    var url = message.content.endsWith()
-    if (message.content.startsWith === 'sus-qrcode'){
-        console.log(`Questo è l'URL ${url}`);
+client.on('messageCreate', (message) => {
+    if (message.content.startsWith === 'sus-qrcode') {
+        var url = message.content.endsWith()
+        console.log(`Queasto è l'URL ${url}`)
     }
-    
 })
