@@ -312,3 +312,7 @@ client.on('messageCreate', message => {
         message.reply({embeds: [schede_grafiche]})
     }
 })
+
+/*---------------------------------
+*      !generatore di qrcode
+*--------------------------------*/
