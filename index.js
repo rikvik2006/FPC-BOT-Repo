@@ -316,3 +316,11 @@ client.on('messageCreate', message => {
 /*---------------------------------
 *      !generatore di qrcode
 *--------------------------------*/
+
+client.on ('messageCreate', message => {
+    var url = message.content.endsWith()
+    if (message.content.startsWith === 'sus-qrcode'){
+        console.log(`Questo è l'URL ${url}`);
+    }
+    
+})
