@@ -329,3 +329,8 @@ client.on('messageCreate', (message) => {
 /*---------------------------------
 *             !test
 *--------------------------------*/
+
+
+client.on ('messageCreate', message => {
+    
+})
