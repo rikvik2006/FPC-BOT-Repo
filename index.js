@@ -1,6 +1,7 @@
 const {Client, Intents, MessageButton, MessageActionRow, MessageEmbed, MessageAttachment,} = require("discord.js");
 
 
+
 const client = new Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
   intents: [
