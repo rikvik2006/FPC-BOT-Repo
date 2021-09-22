@@ -308,7 +308,8 @@ client.on('messageCreate', message => {
             .setTitle('Schede grafiche')
             .setColor('#cccccc')
             .setDescription('Il bot ti dice se ci sono schede grafiche ad un prezzo conveniente')
-            .addField('Non ci sono schede grafiche', 'Prezzi troppo alti. Previsione di ripristino prezzi `Uscita serie 4000`')
+            // .addField('Non ci sono schede grafiche', 'Prezzi troppo alti. Previsione di ripristino prezzi `Uscita serie 4000`')
+            .addField('Ci sono schede grafiche!!! Comprale ora a mai più', 'Restok di massa da amazon italia e francia + Nvidia store')
         message.reply({ embeds: [schede_grafiche] })
     }
 })
