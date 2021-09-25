@@ -27,7 +27,8 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const fs = require("fs");
-const { token, clientId, guildId } = require("./config.json");
+const {clientId, guildId } = require("./config.json");
+require ('dotenv').config()
 
 const Canvas = require("canvas");
 const canvas = Canvas.createCanvas(700, 250);
@@ -39,7 +40,7 @@ const path = require("path");
 //const disbut = require("discord-buttons")
 //disbut(client);
 
-client.login(token);
+client.login(process.env.TOKEN);
 
 client.once("ready", () => {
   console.log("FPC BOT E' ONLINE");

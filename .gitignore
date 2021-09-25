@@ -1,6 +1,11 @@
-node_modules
-admin
-.env
-DataBase.db
+#ignora node modules
+node_modules/
+
+#ignora il database
+
+
+#ignora i codici di config
 config.json
-'npm-debug.log'
+
+#ignora le variabili di ambiente
+.env
