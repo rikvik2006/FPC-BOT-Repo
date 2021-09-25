@@ -1,7 +1,7 @@
 # FPC-BOT-Repo
 Repository del Bot del server discord Friend-PC
 
-##Funzionalità
+### Funzionalità
 
 - Button role
 - Button role con collegamento account minecarft (Hypixel, The HIVE)
