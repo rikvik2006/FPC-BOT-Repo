@@ -63,14 +63,16 @@ client.on("messageCreate", (message) => {
       .aadField("sus-ping", "```PONG! 🏓")
       .addField("sus-schede-grafiche", "```Controlla se sul mercato sono diponibili schede grafiche")
       .addField("sus-qrcode <URL>", "```Genera un QRCODE con link personalizabile")
+      .addField("Slash Commands", "```Usa gli slash command per seplificarti la vita```")
       .addField("↓ Auto Interazioni ↓", "\u200B")
       .addField("Welcome", "```Ti dà il benvenuto con in più una carta di benvenuto")
       .addField("Bost Allert", "```Invia un messagio con carta di bosting quando quacuno boosta il server")
-      .addField("Auto Ruolo", "Troverai una vasta scelta di ruoli su" + cahnnel_mention)
-      .addField("Auto Food Sppamer")
+      .addField("Auto Ruolo", "```Troverai una vasta scelta di ruoli su```" + welcome_mention)
+      .addField("Auto Food Sppamer", "```Auto poster di foto di cibo```"  + food_mention)
       .setFooter("FPC", "https://discohook.org/static/discord-avatar.png");
 
-      var cahnnel_mention = message.guild.channels.cache.get("873517589698056283").toString()
+      var welcome_mention = message.guild.channels.cache.get("873517589698056283").toString()
+      var food_mention = message.guild.channels.cache.get("892869313009172481").toString()
 
     message.channel.send({ embeds: [help_embed] });
   }
