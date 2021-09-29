@@ -380,7 +380,7 @@ client.on('messageCreate', (message) => {
 
 client.on('ready', () => {
 
-    const food_channel = client.channels.cache.find(ch => ch.id === '879659608447258665')
+    const food_channel = client.channels.cache.find(ch => ch.id === '892869313009172481')
 
     setInterval(() => {
 
