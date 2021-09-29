@@ -1,4 +1,4 @@
-const {Client, Intents, MessageButton, MessageActionRow, MessageEmbed, MessageAttachment,} = require("discord.js");
+const { Client, Intents, MessageButton, MessageActionRow, MessageEmbed, MessageAttachment, } = require("discord.js");
 
 
 
@@ -27,8 +27,8 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const fs = require("fs");
-const {clientId, guildId } = require("./config.json");
-require ('dotenv').config()
+const { clientId, guildId } = require("./config.json");
+require('dotenv').config()
 const got = require('got')
 
 const Canvas = require("canvas");
@@ -46,8 +46,15 @@ client.login(process.env.TOKEN);
 client.once("ready", () => {
   console.log("FPC BOT E' ONLINE");
 
-  client.user.setActivity("i tuoi sentimenti", { type: "WATCHING" });
-});
+  client.user.setPresence({
+    activity: {
+      name: 'I tuoi sentimenti',
+      type: 'WATCHING'
+    },
+    status: 'online'
+  })
+})
+
 
 //herlp
 
@@ -68,11 +75,11 @@ client.on("messageCreate", (message) => {
       .addField("Welcome", "```Ti dà il benvenuto con in più una carta di benvenuto```")
       .addField("Bost Allert", "```Invia un messagio con carta di bosting quando quacuno boosta il server```")
       .addField("Auto Ruolo", "```Troverai una vasta scelta di ruoli su```" + welcome_mention)
-      .addField("Auto Food Sppamer", "```Auto poster di foto di cibo```"  + food_mention)
+      .addField("Auto Food Sppamer", "```Auto poster di foto di cibo```" + food_mention)
       .setFooter("FPC", "https://discohook.org/static/discord-avatar.png");
 
-      var welcome_mention = message.guild.channels.cache.get("873517589698056283").toString()
-      var food_mention = message.guild.channels.cache.get("892869313009172481").toString()
+    var welcome_mention = message.guild.channels.cache.get("873517589698056283").toString()
+    var food_mention = message.guild.channels.cache.get("892869313009172481").toString()
 
     message.channel.send({ embeds: [help_embed] });
   }
@@ -369,23 +376,23 @@ client.on("messageCreate", (message) => {
 
 client.on('messageCreate', (message) => {
   if (message.content === "sus-food") {
-      const food_embed = new MessageEmbed()
-      got('https://www.reddit.com/r/food/random/.json').then(response => {
-          let content = JSON.parse(response.body);
-          let permalink = content[0].data.children[0].data.permalink;
-          let foodUrl = `https://reddit.com${permalink}`;
-          let foodImage = content[0].data.children[0].data.url;
-          let foodTitle = content[0].data.children[0].data.title;
-          let foodUpvotes = content[0].data.children[0].data.ups;
-          let foodDownvotes = content[0].data.children[0].data.downs;
-          let foodNumComments = content[0].data.children[0].data.num_comments;
-          food_embed.setTitle(`${foodTitle}`)
-          food_embed.setURL(`${foodUrl}`)
-          food_embed.setImage(foodImage)
-          food_embed.setColor('#FF8000')
-          food_embed.setFooter(`👍 ${foodUpvotes} | 👎 ${foodDownvotes} | 💬 ${foodNumComments}`)
-          message.channel.send({ embeds: [food_embed] })
-      })
+    const food_embed = new MessageEmbed()
+    got('https://www.reddit.com/r/food/random/.json').then(response => {
+      let content = JSON.parse(response.body);
+      let permalink = content[0].data.children[0].data.permalink;
+      let foodUrl = `https://reddit.com${permalink}`;
+      let foodImage = content[0].data.children[0].data.url;
+      let foodTitle = content[0].data.children[0].data.title;
+      let foodUpvotes = content[0].data.children[0].data.ups;
+      let foodDownvotes = content[0].data.children[0].data.downs;
+      let foodNumComments = content[0].data.children[0].data.num_comments;
+      food_embed.setTitle(`${foodTitle}`)
+      food_embed.setURL(`${foodUrl}`)
+      food_embed.setImage(foodImage)
+      food_embed.setColor('#FF8000')
+      food_embed.setFooter(`👍 ${foodUpvotes} | 👎 ${foodDownvotes} | 💬 ${foodNumComments}`)
+      message.channel.send({ embeds: [food_embed] })
+    })
   }
 })
 
@@ -396,27 +403,27 @@ client.on('messageCreate', (message) => {
 
 client.on('ready', () => {
 
-    const food_channel = client.channels.cache.find(ch => ch.id === '892869313009172481')
+  const food_channel = client.channels.cache.find(ch => ch.id === '892869313009172481')
 
-    setInterval(() => {
+  setInterval(() => {
 
-        const food_embed = new MessageEmbed()
-        got('https://www.reddit.com/r/food/random/.json').then(response => {
-            let content = JSON.parse(response.body);
-            let permalink = content[0].data.children[0].data.permalink;
-            let foodUrl = `https://reddit.com${permalink}`;
-            let foodImage = content[0].data.children[0].data.url;
-            let foodTitle = content[0].data.children[0].data.title;
-            let foodUpvotes = content[0].data.children[0].data.ups;
-            let foodDownvotes = content[0].data.children[0].data.downs;
-            let foodNumComments = content[0].data.children[0].data.num_comments;
-            food_embed.setTitle(`${foodTitle}`)
-            food_embed.setURL(`${foodUrl}`)
-            food_embed.setImage(foodImage)
-            food_embed.setColor('#FF8000')
-            food_embed.setFooter(`👍 ${foodUpvotes} | 👎 ${foodDownvotes} | 💬 ${foodNumComments}`)
-            food_channel.send({ embeds: [food_embed] })
-        })
+    const food_embed = new MessageEmbed()
+    got('https://www.reddit.com/r/food/random/.json').then(response => {
+      let content = JSON.parse(response.body);
+      let permalink = content[0].data.children[0].data.permalink;
+      let foodUrl = `https://reddit.com${permalink}`;
+      let foodImage = content[0].data.children[0].data.url;
+      let foodTitle = content[0].data.children[0].data.title;
+      let foodUpvotes = content[0].data.children[0].data.ups;
+      let foodDownvotes = content[0].data.children[0].data.downs;
+      let foodNumComments = content[0].data.children[0].data.num_comments;
+      food_embed.setTitle(`${foodTitle}`)
+      food_embed.setURL(`${foodUrl}`)
+      food_embed.setImage(foodImage)
+      food_embed.setColor('#FF8000')
+      food_embed.setFooter(`👍 ${foodUpvotes} | 👎 ${foodDownvotes} | 💬 ${foodNumComments}`)
+      food_channel.send({ embeds: [food_embed] })
+    })
 
-    }, 300000); //300000
+  }, 300000); //300000
 })
