@@ -29,6 +29,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const fs = require("fs");
 const {clientId, guildId } = require("./config.json");
 require ('dotenv').config()
+const got = require('got')
 
 const Canvas = require("canvas");
 const canvas = Canvas.createCanvas(700, 250);
@@ -353,6 +354,24 @@ client.on("messageCreate", (message) => {
  *          !food posterç
  *--------------------------------*/
 
-client.on("messageCreate", (message) => {
-  
-});
+client.on('messageCreate', (message) => {
+  if (message.content === "m-meme") {
+      const meme_embed = new MessageEmbed()
+      got('https://www.reddit.com/r/food/random/.json').then(response => {
+          let content = JSON.parse(response.body);
+          let permalink = content[0].data.children[0].data.permalink;
+          let memeUrl = `https://reddit.com${permalink}`;
+          let memeImage = content[0].data.children[0].data.url;
+          let memeTitle = content[0].data.children[0].data.title;
+          let memeUpvotes = content[0].data.children[0].data.ups;
+          let memeDownvotes = content[0].data.children[0].data.downs;
+          let memeNumComments = content[0].data.children[0].data.num_comments;
+          meme_embed.setTitle(`${memeTitle}`)
+          meme_embed.setURL(`${memeUrl}`)
+          meme_embed.setImage(memeImage)
+          meme_embed.setColor()
+          meme_embed.setFooter(`👍 ${memeUpvotes} | 👎 ${memeDownvotes} | 💬 ${memeNumComments}`)
+          message.channel.send({ embeds: [meme_embed] })
+      })
+  }
+})
