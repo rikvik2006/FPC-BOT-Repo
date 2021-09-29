@@ -351,27 +351,56 @@ client.on("messageCreate", (message) => {
 });
 
 /*---------------------------------
- *          !food posterç
+ *          !food poster
  *--------------------------------*/
 
 client.on('messageCreate', (message) => {
   if (message.content === "sus-food") {
-      const meme_embed = new MessageEmbed()
+      const food_embed = new MessageEmbed()
       got('https://www.reddit.com/r/food/random/.json').then(response => {
           let content = JSON.parse(response.body);
           let permalink = content[0].data.children[0].data.permalink;
-          let memeUrl = `https://reddit.com${permalink}`;
-          let memeImage = content[0].data.children[0].data.url;
-          let memeTitle = content[0].data.children[0].data.title;
-          let memeUpvotes = content[0].data.children[0].data.ups;
-          let memeDownvotes = content[0].data.children[0].data.downs;
-          let memeNumComments = content[0].data.children[0].data.num_comments;
-          meme_embed.setTitle(`${memeTitle}`)
-          meme_embed.setURL(`${memeUrl}`)
-          meme_embed.setImage(memeImage)
-          meme_embed.setColor('#FF8000')
-          meme_embed.setFooter(`👍 ${memeUpvotes} | 👎 ${memeDownvotes} | 💬 ${memeNumComments}`)
-          message.channel.send({ embeds: [meme_embed] })
+          let foodUrl = `https://reddit.com${permalink}`;
+          let foodImage = content[0].data.children[0].data.url;
+          let foodTitle = content[0].data.children[0].data.title;
+          let foodUpvotes = content[0].data.children[0].data.ups;
+          let foodDownvotes = content[0].data.children[0].data.downs;
+          let foodNumComments = content[0].data.children[0].data.num_comments;
+          food_embed.setTitle(`${foodTitle}`)
+          food_embed.setURL(`${foodUrl}`)
+          food_embed.setImage(foodImage)
+          food_embed.setColor('#FF8000')
+          food_embed.setFooter(`👍 ${foodUpvotes} | 👎 ${foodDownvotes} | 💬 ${foodNumComments}`)
+          message.channel.send({ embeds: [food_embed] })
       })
   }
+})
+
+
+
+client.on('ready', () => {
+
+    const food_channel = client.channels.cache.find(ch => ch.id === '879659608447258665')
+
+    setInterval(() => {
+
+        const food_embed = new MessageEmbed()
+        got('https://www.reddit.com/r/food/random/.json').then(response => {
+            let content = JSON.parse(response.body);
+            let permalink = content[0].data.children[0].data.permalink;
+            let foodUrl = `https://reddit.com${permalink}`;
+            let foodImage = content[0].data.children[0].data.url;
+            let foodTitle = content[0].data.children[0].data.title;
+            let foodUpvotes = content[0].data.children[0].data.ups;
+            let foodDownvotes = content[0].data.children[0].data.downs;
+            let foodNumComments = content[0].data.children[0].data.num_comments;
+            food_embed.setTitle(`${foodTitle}`)
+            food_embed.setURL(`${foodUrl}`)
+            food_embed.setImage(foodImage)
+            food_embed.setColor('#FF8000')
+            food_embed.setFooter(`👍 ${foodUpvotes} | 👎 ${foodDownvotes} | 💬 ${foodNumComments}`)
+            food_channel.send({ embeds: [food_embed] })
+        })
+
+    }, 5000); //300000
 })
