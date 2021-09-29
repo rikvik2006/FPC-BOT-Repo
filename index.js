@@ -130,6 +130,7 @@ client.on("guildMemberAdd", async (member) => {
   );
 });
 
+
 //welcomw emit
 
 client.on("messageCreate", (message) => {
@@ -137,6 +138,7 @@ client.on("messageCreate", (message) => {
     client.emit("guildMemberAdd", message.member);
   }
 });
+
 
 //nitro boost
 
@@ -147,12 +149,14 @@ client.on("nitroBoost", (booster) => {
   client.addRole(booster.guild.roles.find((a) => a.name === "Deam Boster"));
 });
 
+
 //auto role
 
 client.on("guildMemberAdd", (member) => {
   var role = member.guild.roles.cache.find((r) => r.name === "F_PC");
   member.roles.add(role).catch(console.error);
 });
+
 
 //buttons
 
@@ -193,6 +197,7 @@ client.on("messageCreate", (message) => {
     message.channel.send({ embeds: [buttonEmbed], components: [row] });
   }
 });
+
 
 //click button
 
@@ -348,4 +353,6 @@ client.on("messageCreate", (message) => {
  *             !test
  *--------------------------------*/
 
-client.on("messageCreate", (message) => {});
+client.on("messageCreate", (message) => {
+  
+});
