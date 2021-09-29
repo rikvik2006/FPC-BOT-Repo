@@ -350,7 +350,7 @@ client.on("messageCreate", (message) => {
 });
 
 /*---------------------------------
- *             !test
+ *          !food posterç
  *--------------------------------*/
 
 client.on("messageCreate", (message) => {
