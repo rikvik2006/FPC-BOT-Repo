@@ -46,6 +46,8 @@ client.login(process.env.TOKEN);
 client.once("ready", () => {
   console.log("FPC BOT E' ONLINE");
 
+  client.user.setActivity("I tuoi sentimenti", { type: "WATCHING"})
+
   client.user.setPresence({
     activity: {
       name: 'I tuoi sentimenti',
