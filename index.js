@@ -355,7 +355,7 @@ client.on("messageCreate", (message) => {
  *--------------------------------*/
 
 client.on('messageCreate', (message) => {
-  if (message.content === "m-meme") {
+  if (message.content === "sus-food") {
       const meme_embed = new MessageEmbed()
       got('https://www.reddit.com/r/food/random/.json').then(response => {
           let content = JSON.parse(response.body);
@@ -369,7 +369,7 @@ client.on('messageCreate', (message) => {
           meme_embed.setTitle(`${memeTitle}`)
           meme_embed.setURL(`${memeUrl}`)
           meme_embed.setImage(memeImage)
-          meme_embed.setColor()
+          meme_embed.setColor('#FF8000')
           meme_embed.setFooter(`👍 ${memeUpvotes} | 👎 ${memeDownvotes} | 💬 ${memeNumComments}`)
           message.channel.send({ embeds: [meme_embed] })
       })
