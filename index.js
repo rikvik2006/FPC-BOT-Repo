@@ -66,8 +66,10 @@ client.on("messageCreate", (message) => {
       .addField("↓ Auto Interazioni ↓", "\u200B")
       .addField("Welcome", "```Ti dà il benvenuto con in più una carta di benvenuto")
       .addField("Bost Allert", "```Invia un messagio con carta di bosting quando quacuno boosta il server")
-      .addField
+      .addField("Auto Ruolo", "Troverai una vasta scelta di ruoli su" + cahnnel_mention)
       .setFooter("FPC", "https://discohook.org/static/discord-avatar.png");
+
+      var cahnnel_mention = message.guild.channels.cache.get("873517589698056283").toString()
 
     message.channel.send({ embeds: [help_embed] });
   }
