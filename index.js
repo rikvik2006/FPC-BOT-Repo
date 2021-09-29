@@ -59,6 +59,14 @@ client.on("messageCreate", (message) => {
       .setColor("#CCCCCC")
       .setDescription("Tutti i comadi")
       .addField("sus-help", "```Tutti i comandi```")
+      .addField("sus-food", "```Una baella immagine di cibo")
+      .aadField("sus-ping", "```PONG! 🏓")
+      .addField("sus-schede-grafiche", "```Controlla se sul mercato sono diponibili schede grafiche")
+      .addField("sus-qrcode <URL>", "```Genera un QRCODE con link personalizabile")
+      .addField("↓ Auto Interazioni ↓", "\u200B")
+      .addField("Welcome", "```Ti dà il benvenuto con in più una carta di benvenuto")
+      .addField("Bost Allert", "```Invia un messagio con carta di bosting quando quacuno boosta il server")
+      .addField
       .setFooter("FPC", "https://discohook.org/static/discord-avatar.png");
 
     message.channel.send({ embeds: [help_embed] });
@@ -376,6 +384,9 @@ client.on('messageCreate', (message) => {
   }
 })
 
+/*---------------------------------
+ *          !food spammer
+ *--------------------------------*/
 
 
 client.on('ready', () => {
