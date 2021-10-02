@@ -32,8 +32,6 @@ require('dotenv').config()
 const got = require('got')
 
 const Canvas = require("canvas");
-const canvas = Canvas.createCanvas(700, 250);
-const context = canvas.getContext("2d");
 const permitted_DS = require("./admin/permitted.DS_pro.json");
 const permited_MC = require("./admin/permitted.Minecarft.json");
 const path = require("path");
@@ -46,7 +44,7 @@ client.login(process.env.TOKEN);
 client.once("ready", () => {
   console.log("FPC BOT E' ONLINE");
 
-  client.user.setActivity("I tuoi sentimenti", { type: "WATCHING"})
+  client.user.setActivity("I tuoi sentimenti", { type: "WATCHING" })
 
   client.user.setPresence({
     activity: {
@@ -98,12 +96,12 @@ client.on("guildMemberAdd", async (member) => {
   // Create a canvas and access the 2d context
   const canvas = Canvas.createCanvas(700, 250);
   const ctx = canvas.getContext("2d");
+  const path = require("path");
 
   const { guild } = member;
 
   // Load the background image and draw it to the canvas
   const background = await Canvas.loadImage("./wallpaper.png");
-  const path = require("path");
 
   Canvas.registerFont(path.join(__dirname, "fonts", "Dosis-Bold.ttf"), {
     family: "Dosis",
@@ -116,13 +114,11 @@ client.on("guildMemberAdd", async (member) => {
   // Load the user's profile picture and draw it
   const pfp = await Canvas.loadImage(
     member.user.displayAvatarURL({
-      format: "png",
-      format: "webp",
-      format: "jpg",
-      format: "jpeg",
-      format: "gif",
+      format: "jpg"
     })
   );
+
+
 
   x = canvas.width / 2 - pfp.width / 2;
   y = 25;
@@ -147,9 +143,8 @@ client.on("guildMemberAdd", async (member) => {
   );
 
   channel.send(
-    `Bella gianda, ${member}! Spero che te abbia portato i biscotti <a:hei:874591082812440586>`,
-    attachment
-  );
+    {message: [`Bella gianda, ${member}! Spero che te abbia portato i biscotti <a:hei:874591082812440586>`], 
+    files:[attachment]});
 });
 
 
