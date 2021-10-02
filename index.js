@@ -136,7 +136,7 @@ client.on("guildMemberAdd", async (member) => {
   ctx.fillText(text, x, 60 + pfp.height);
   // Display member count
   ctx.font = "30px Dosis";
-  text = `Member #${guild.memberCount}`;
+  text = `Member #${guild.memberCount.toString()}`;
   x = canvas.width / 2 - ctx.measureText(text).width / 2;
   ctx.fillText(text, x, 100 + pfp.height);
   // Attach the image to a message and send it
@@ -147,8 +147,7 @@ client.on("guildMemberAdd", async (member) => {
   );
 
   channel.send(
-    `Bella gianda, ${member}! Spero che te abbia portato i biscotti <a:hei:874591082812440586>
-	`,
+    `Bella gianda, ${member}! Spero che te abbia portato i biscotti <a:hei:874591082812440586>`,
     attachment
   );
 });
