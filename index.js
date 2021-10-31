@@ -142,7 +142,8 @@ client.on("guildMemberAdd", async (member) => {
     "say-goodbye.png"
   );
 
-  channel.send({files:[attachment]});
+  channel.send({files:[attachment], description: [`Bella gianda, ${member}! Spero che te abbia portato i biscotti <a:hei:874591082812440586>`]});
+
 });
 
 
@@ -427,8 +428,3 @@ client.on('ready', () => {
  *          !Nuovo comando
  *--------------------------------*/
 
-//test
-// test
-// test
-// test
-// test
