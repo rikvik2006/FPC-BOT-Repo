@@ -1,26 +1,25 @@
-const { Client, Intents, MessageButton, MessageActionRow, MessageEmbed, MessageAttachment, } = require("discord.js");
+// const { Client, Intents, MessageButton, MessageActionRow, MessageEmbed, MessageAttachment, } = require("discord.js");
+const Discord = require("discord.js");
 
 
-
-const client = new Client({
+const client = new Discord.Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
   intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MEMBERS,
-    Intents.FLAGS.GUILD_BANS,
-    Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
-    Intents.FLAGS.GUILD_INTEGRATIONS,
-    Intents.FLAGS.GUILD_WEBHOOKS,
-    Intents.FLAGS.GUILD_INVITES,
-    Intents.FLAGS.GUILD_VOICE_STATES,
-    Intents.FLAGS.GUILD_PRESENCES,
-    Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-    Intents.FLAGS.GUILD_MESSAGE_TYPING,
-    Intents.FLAGS.DIRECT_MESSAGES,
-    Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-    Intents.FLAGS.DIRECT_MESSAGE_TYPING,
-  ],
+    "GUILDS",
+    "GUILD_MEMBERS",
+    "GUILD_BANS",
+    "GUILD_EMOJIS_AND_STICKERS",
+    "GUILD_INTEGRATIONS",
+    "GUILD_WEBHOOKS",
+    "GUILD_INVITES",
+    "GUILD_VOICE_STATES",
+    "GUILD_PRESENCES",
+    "GUILD_MESSAGES",
+    "GUILD_MESSAGE_REACTIONS",
+    "GUILD_MESSAGE_TYPING",
+    "DIRECT_MESSAGES",
+    "DIRECT_MESSAGE_REACTIONS",
+    "DIRECT_MESSAGE_TYPING"],
 });
 
 const { REST } = require("@discordjs/rest");
@@ -60,7 +59,7 @@ client.once("ready", () => {
 
 client.on("messageCreate", (message) => {
   if (message.content === "sus-help") {
-    var help_embed = new MessageEmbed()
+    var help_embed = new Discord.MessageEmbed()
 
       .setTitle("HELP")
       .setColor("#CCCCCC")
@@ -137,7 +136,7 @@ client.on("guildMemberAdd", async (member) => {
   ctx.fillText(text, x, 100 + pfp.height);
   // Attach the image to a message and send it
   //const attachment = new MessageAttachment(canvas.toBuffer())
-  const attachment = new MessageAttachment(
+  const attachment = new Discord.MessageAttachment(
     canvas.toBuffer(),
     "say-goodbye.png"
   );
@@ -178,24 +177,24 @@ client.on("guildMemberAdd", (member) => {
 
 client.on("messageCreate", (message) => {
   if (message.content === "sus-bottoni") {
-    var row = new MessageActionRow().addComponents(
-      new MessageButton()
+    var row = new Discord.MessageActionRow().addComponents(
+      new Discord.MessageButton()
         .setLabel("Baby Rondo")
         .setStyle("DANGER")
         .setCustomId("role_rondo"),
 
-      new MessageButton()
+      new Discord.MessageButton()
         .setLabel("Discord Pro")
         .setStyle("SUCCESS")
         .setCustomId("role_discord_pro"),
 
-      new MessageButton()
+      new Discord.MessageButton()
         .setLabel("Minecarft PRO Bedwars")
         .setStyle("PRIMARY")
         .setCustomId("role_minecarft_pro_bedwars")
     );
 
-    var buttonEmbed = new MessageEmbed()
+    var buttonEmbed = new Discord.MessageEmbed()
       .setTitle("Cosa sei tu")
       .setColor("#cccccc")
       .setDescription(
@@ -272,7 +271,7 @@ client.on("messageCreate", (message) => {
   if (message.content === "sus-ping") {
     var utente = message.author.toString();
 
-    var embed_ping = new MessageEmbed()
+    var embed_ping = new Discord.MessageEmbed()
 
       .setTitle("Pong")
       .setDescription(`${utente} pong!`)
@@ -297,15 +296,15 @@ client.on("messageCreate", (message) => {
   if (message.content === "sus-online") {
     message.channel.send({ embeds: [online_embed], components: [roww] });
 
-    var online_embed = new MessageEmbed()
+    var online_embed = new Discord.MessageEmbed()
       .setColor("#00ff00")
       .setTitle("Verifiac se il bot è ONLINE")
       .setDescription(
         "Se il bot risppondera al click del bottone allora il bot sarà online, altrimenti ti darà un errore è in quetso caso il bot srà ofline"
       );
 
-    var roww = new MessageActionRow().addComponents(
-      new MessageButton()
+    var roww = new Discord.MessageActionRow().addComponents(
+      new Discord.MessageButton()
         .setLabel("ONLINE")
         .setStyle("SUCCESS")
         .setCustomId("online")
@@ -339,7 +338,7 @@ client.on("interactionCreate", async (interaction) => {
 
 client.on("messageCreate", (message) => {
   if (message.content === "sus-schede-grafiche") {
-    var schede_grafiche = new MessageEmbed()
+    var schede_grafiche = new Discord.MessageEmbed()
       .setTitle("Schede grafiche")
       .setColor("#cccccc")
       .setDescription(
@@ -371,7 +370,7 @@ client.on("messageCreate", (message) => {
 
 client.on('messageCreate', (message) => {
   if (message.content === "sus-food") {
-    const food_embed = new MessageEmbed()
+    const food_embed = new Discord.MessageEmbed()
     got('https://www.reddit.com/r/food/random/.json').then(response => {
       let content = JSON.parse(response.body);
       let permalink = content[0].data.children[0].data.permalink;
@@ -402,7 +401,7 @@ client.on('ready', () => {
 
   setInterval(() => {
 
-    const food_embed = new MessageEmbed()
+    const food_embed = new Discord.MessageEmbed()
     got('https://www.reddit.com/r/food/random/.json').then(response => {
       let content = JSON.parse(response.body);
       let permalink = content[0].data.children[0].data.permalink;
@@ -428,3 +427,10 @@ client.on('ready', () => {
  *          !Nuovo comando
  *--------------------------------*/
 
+
+client.on('messageCreate',(message) => {
+  if (message.content == '!test') {
+    message.channel.send('cioa');
+    message.react('🏓')
+  }
+})
