@@ -449,6 +449,3 @@ client.on('messageCreate', (message) => {
   }
 })
 
-client.on('messageCreate', (message) => {
-  console.log(message);
-})
