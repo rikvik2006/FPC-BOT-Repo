@@ -437,5 +437,7 @@ client.on('messageCreate',(message) => {
 
 
 client.on('messageCreate', (message) => {
-  
+  if (message.content === 'sus-backup') {
+    
+  }
 })
