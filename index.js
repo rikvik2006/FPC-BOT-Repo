@@ -440,10 +440,15 @@ client.on('messageCreate', (message) => {
   if (message.content === 'sus-backup') {
     if (message.member.hasPermission('ADMINISTRATOR')) {
       message.channel.send('Backup in corso...');
-        
+        message.c
       message.channel.send('Backup completato!');
     } else { 
+      message.channel.send('Non hai i permessi necessari per eseguire questo comando');
       return;
     }
   }
+})
+
+client.on('messageCreate', (message) => {
+  console.log(message);
 })
