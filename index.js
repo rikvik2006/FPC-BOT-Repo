@@ -141,7 +141,7 @@ client.on("guildMemberAdd", async (member) => {
     "say-goodbye.png"
   );
 
-  channel.send({files:[attachment], description: [`Bella gianda, ${member}! Spero che te abbia portato i biscotti <a:hei:874591082812440586>`]});
+  channel.send({ files: [attachment], description: [`Bella gianda, ${member}! Spero che te abbia portato i biscotti <a:hei:874591082812440586>`] });
 
 });
 
@@ -428,7 +428,7 @@ client.on('ready', () => {
  *--------------------------------*/
 
 
-client.on('messageCreate',(message) => {
+client.on('messageCreate', (message) => {
   if (message.content == '!test') {
     message.channel.send('cioa');
     message.react('🏓')
@@ -440,17 +440,28 @@ client.on('messageCreate', (message) => {
   if (message.content === 'sus-backup') {
     if (message.member.permissions.has('ADMINISTRATOR')) {
       message.channel.send('Backup in corso...');
-        
+
       message.channel.send('Backup completato!');
-    } else { 
+    } else {
       return message.channel.send('Non hai i permessi necessari per eseguire questo comando');
     }
   }
 })
 
+const messages = [];
+
 client.on('messageCreate', (message) => {
   if (message.channel.type === 'dm') {
-    message.channel
-  }
+    const args = message.content.slice(1).split(' '); // Split all spaces so you can get the command out of the message
+    const cmd = args.shift().toLowerCase(); // Get the commands name
 
+    switch (cmd) {
+      case 'add':
+        messages.push(args.join(' ')); // Add the message's content to the messages array
+        break;
+      case 'get':
+        message.channel.send(messages.map((message) => `${message}\n`)); /* Get all the stored messages and map them + send them */
+        break;
+    }
+  }
 })
