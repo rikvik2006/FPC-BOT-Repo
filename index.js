@@ -34,6 +34,7 @@ const Canvas = require("canvas");
 const permitted_DS = require("./admin/permitted.DS_pro.json");
 const permited_MC = require("./admin/permitted.Minecarft.json");
 const path = require("path");
+require('events').EventEmitter.defaultMaxListeners = 15;
 
 //const disbut = require("discord-buttons")
 //disbut(client);
@@ -42,6 +43,7 @@ client.login(process.env.TOKEN);
 
 client.once("ready", () => {
   console.log("FPC BOT E' ONLINE");
+  
 
   client.user.setActivity("I tuoi sentimenti", { type: "WATCHING" })
 
@@ -467,9 +469,9 @@ client.on('messageCreate', (message) => {
 })
 
 client.on('messageCreate', (message) => {
-  if (message.channel.type === 'DM') {
+  if (message.channel.type === "DM") {
     if (message.content.startsWith === 'sus-') {
       message.channel.send('Non puoi usare questo comando in un DM');
-    } return;
+    } 
   }
 })
