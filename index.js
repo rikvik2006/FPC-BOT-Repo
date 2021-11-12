@@ -465,3 +465,11 @@ client.on('messageCreate', (message) => {
     }
   }
 })
+
+client.on('messageCreate', (message) => {
+  if (message.channel.type === 'DM') {
+    if (message.content.startsWith === 'sus-') {
+      message.channel.send('Non puoi usare questo comando in un DM');
+    } return;
+  }
+})
