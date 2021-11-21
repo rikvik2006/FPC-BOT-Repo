@@ -475,3 +475,22 @@ client.on('messageCreate', (message) => {
     } 
   }
 })
+
+
+client.on("messageCreate",  (message) => {
+  if (message.content === "testmonitor") {
+
+    var embed_testmonitor = new Discord.MessageEmbed()
+        .setTitle("test")
+        .setDescription("test")
+        .setColor("#FFC307")
+        .setThumbnail("https://imgur.com/jgPxWyE.gif")
+        .setFooter("Bread", "https://imgur.com/GdE8U90.png")
+        .setTimestamp()
+        .setAuthor("Bread", "https://imgur.com/GdE8U90.png")
+        .setURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        .addField("test", "test")
+
+    message.channel.send({ embeds: [embed_testmonitor] });
+  }
+})
