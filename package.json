@@ -2,7 +2,7 @@
   "name": "fpc-bot-repo",
   "version": "1.0.0",
   "engines": {
-    "node": "16.x"
+    "node": "16.10.x"
   },
   "description": "Bot Discord del server Frind-PC",
   "main": "index.js",
