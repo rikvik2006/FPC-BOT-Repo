@@ -478,6 +478,19 @@ client.on('messageCreate', (message) => {
 
 
 /*---------------------------------
- *          !Nuovo comando 
+ *          !Prezzo ETH
  *--------------------------------*/
 
+client.on ('messageCreate', (message) => {
+  if (message.content === 'sus-ETH') {
+    got('https://api.coindesk.com/v1/bpi/currentprice/EUR.json').then(response => {
+      let content = JSON.parse(response.body);
+      let ETH = content.bpi.EUR.rate_float;
+      var prezzoETH = new Discord.MessageEmbed()
+      .setTitle('Prezzo ETH')
+      .setColor('#FF8000')
+      .setDescription(`Il prezzo di ETH è di ${ETH}€`)
+      message.channel.send({ embeds: [prezzoETH] })
+    })
+  }
+})
