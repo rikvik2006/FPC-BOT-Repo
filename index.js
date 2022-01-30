@@ -86,7 +86,7 @@ client.on("messageCreate", (message) => {
   }
 });
 
-//welcomw canvas
+//welcome canvas
 
 client.on("guildMemberAdd", async (member) => {
   const channel = member.guild.channels.cache.find(
@@ -143,9 +143,10 @@ client.on("guildMemberAdd", async (member) => {
     "say-goodbye.png"
   );
 
-  channel.send({ files: [attachment], description: [`Bella gianda, ${member}! Spero che te abbia portato i biscotti <a:hei:874591082812440586>`] });
+  channel.send({ files: [attachment], embed: { description: [`Bella gianda, ${member}! Spero che te abbia portato i biscotti <a:hei:874591082812440586>`] } });
 
 });
+
 
 
 //welcomw emit
